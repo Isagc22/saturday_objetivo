@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="registroRequirementModal" class="modal-register">
+        <div class="register-container">
+            <span id="closeModal"><i class="bi bi-x-lg"></i></span>
+            <h3>Registrar Requerimiento</h3>
+
+            <form id="requirementForm" class="formulario-registro">
+                <div class="mb-3">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" class="form-control" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="typology">Tipología</label>
+                    <select id="typology" name="typology" class="form-control">
+                        <option value="">-- Selecciona tipología --</option>
+                        <option value="T1">T1</option>
+                        <option value="T2">T2</option>
+                    </select>
+                </div>
+
+                <div class="boton-contenedor">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/registroReq.js"></script>
+</body>
+
+</html>

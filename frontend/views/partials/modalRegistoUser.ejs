@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration Modal</title>
+  <link rel="stylesheet" href="/css/formRegistroUser.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+  <div id="registroUserModal" class="modal-register">
+    <div class="register-container">
+      <span id="closeModal"><i class="bi bi-x-lg"></i></span>
+      <h3>Crea una cuenta</h3>
+
+      <form action="/usuarios" method="POST" class="formulario-registro" novalidate>
+        <div class="grupo-formulario">
+          <label for="id_documento">Documento</label>
+          <input type="number" id="id_documento" name="id_document" maxlength="10" required>
+
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="first_name" required>
+
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="last_name" required>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="email" required>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="contrasena">Contraseña</label>
+          <input type="password" id="contrasena" name="password" required>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="rol">Rol</label>
+          <select id="rol" name="role" required>
+            <option value="">-- Selecciona un rol --</option>
+            <option value="T1">T1</option>
+            <option value="T2">T2</option>
+          </select>
+        </div>
+
+        <div class="boton-contenedor">
+          <button type="submit" class="boton-registro">Registrarte</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="/js/validacionFormRegistroUser.js"></script>
+</body>
+
+</html>

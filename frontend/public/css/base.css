@@ -1,0 +1,53 @@
+/* =============================== */
+/* BASE.CSS -> Variables + Globales */
+/* =============================== */
+
+/* Variables globales */
+:root {
+  --primary-color: #0073e6;
+  --primary-hover: #005bb5;
+  --error-color: #DC143C;
+  --bg-light: #ffffff;
+  --bg-dark: #181b34;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --font-family: Arial, sans-serif;
+}
+
+/* Reset y tipografía global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+/* Body con soporte de temas */
+body.light-mode {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* Inputs y selects */
+input, select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+
+
+
+/* Texto de error */
+.error-mensaje {
+  color: var(--error-color);
+  font-size: 13px;
+  margin-top: 5px;
+  font-weight: bold;
+}

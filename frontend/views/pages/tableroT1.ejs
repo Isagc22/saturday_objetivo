@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tablero T1</title>
+  <link rel="shortcut icon" href="/assets/monday_logo_icon.png" type="image/x-icon">
+
+
+</head>
+
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <h2 class="titulo-tablero-operacion">Legal - T1 Operación Portal 2025</h2>
+
+  <% function renderRow(r, estados, users) { %>
+    <tr data-id="<%= r.id %>">
+      <!-- NOMBRE (sticky + tooltip) -->
+      <td class="sticky-col-1 td-limitado" data-full="<%= r.name %>"><%= r.name %></td>
+
+      <!-- ID -->
+      <td><%= r.id %></td>
+
+      <!-- DESCRIPCIÓN (limitado + tooltip) -->
+      <td class="td-limitado" data-full="<%= r.description %>"><%= r.description %></td>
+
+      <!-- ESTADO -->
+      <td>
+        <div class="estado-dropdown" data-id="<%= r.id %>">
+          <% 
+            let claseEstado = 
+              r.status==="compromiso" ? "estado-compromiso" : 
+              r.status==="implementacion" ? "estado-implementacion" : 
+              r.status==="qa/revision" ? "estado-qa-revision" : "";
+          %>
+          <button class="estado-btn <%= claseEstado %>">
+            <%= r.status %> ▼
+          </button>
+          <div class="estado-menu">
+            <div class="estado-opcion estado-compromiso" data-value="compromiso">Compromiso</div>
+            <div class="estado-opcion estado-implementacion" data-value="implementacion">Implementación</div>
+            <div class="estado-opcion estado-qa-revision" data-value="qa/revision">QA / Revisión</div>
+          </div>
+        </div>
+      </td>
+
+      <!-- RESPONSABLE -->
+      <td>
+        <div class="responsable-dropdown" data-id="<%= r.id %>">
+          <% if (r.responsible) { 
+               const initials = r.responsible.split(" ").map(n => n[0]).join("").toUpperCase();
+               const colorIndex = r.responsible.charCodeAt(0) % 8;
+          %>
+            <div class="responsable-avatar avatar-color-<%= colorIndex %>"><%= initials %></div>
+          <% } else { %>
+            <div class="responsable-avatar empty">+</div>
+          <% } %>
+
+          <div class="responsable-menu">
+            <% users.forEach(user => { 
+                 const fullName = user.first_name + " " + user.last_name;
+                 const initials = user.first_name[0].toUpperCase() + (user.last_name ? user.last_name[0].toUpperCase() : "");
+                 const colorIndex = fullName.charCodeAt(0) % 8;
+            %>
+              <div class="responsable-opcion" data-value="<%= fullName %>">
+                <div class="responsable-avatar avatar-color-<%= colorIndex %>"><%= initials %></div>
+                <span><%= fullName %></span>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </td>
+
+      <!-- FECHAS -->
+      <td><%= r.start_date ? new Date(r.start_date).toLocaleDateString("es-CO") : "-" %></td>
+      <td><%= r.end_date ? new Date(r.end_date).toLocaleDateString("es-CO") : "-" %></td>
+
+      <!-- TIPO -->
+      <td><%= r.typology %></td>
+    </tr>
+  <% } %>
+
+  <!-- ========== UN SOLO CONTENEDOR SCROLL PARA TODAS LAS TABLAS ========== -->
+  <div class="global-scroll">
+
+    <!-- ================== COMPROMISO ================== -->
+    <section class="section-tablero-t1">
+      <p class="titulo-tabla compromiso">Compromiso diario</p>
+      <div class="container-table-uno">
+        <!-- Eliminé el wrapper individual (data-simplebar) para usar el scroll global -->
+        <table class="table-compromiso-t1">
+          <thead>
+            <tr>
+              <th class="sticky-col-1">Nombre</th>
+              <th>Id</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Responsable</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody id="compromiso-body">
+            <% requerimientos.filter(r=> r.status === "compromiso").forEach(r => { %>
+              <%= renderRow(r, estados, users) %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================== IMPLEMENTACIÓN ================== -->
+    <section class="section-tablero-t1">
+      <p class="titulo-tabla implementacion">Implementación</p>
+      <div class="container-table-uno">
+        <table class="table-compromiso-t1">
+          <thead>
+            <tr>
+              <th class="sticky-col-1">Nombre</th>
+              <th>Id</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Responsable</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody id="implementacion-body">
+            <% requerimientos.filter(r=> r.status === "implementacion").forEach(r => { %>
+              <%= renderRow(r, estados, users) %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================== QA / REVISIÓN ================== -->
+    <section class="section-tablero-t1">
+      <p class="titulo-tabla qa-revision">QA / Revisión</p>
+      <div class="container-table-uno">
+        <table class="table-compromiso-t1">
+          <thead>
+            <tr>
+              <th class="sticky-col-1">Nombre</th>
+              <th>Id</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th>Responsable</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody id="qa-body">
+            <% requerimientos.filter(r=> r.status === "qa/revision").forEach(r => { %>
+              <%= renderRow(r, estados, users) %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div> <!-- cierre global-scroll -->
+
+  <!-- Barra global flotante (una sola para todas) -->
+  <div class="scrollbar-global" aria-hidden="true">
+    <div class="scrollbar-inner"></div>
+  </div>
+
+
+
+  <script src="/js/funcionalidadesTableros.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
+</body>
+
+</html>

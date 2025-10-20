@@ -1,0 +1,95 @@
+nav.nav-info-prin {
+  display: flex;
+  padding: 10px 10px 10px 0px;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+/* por defecto en modo claro */
+.icon-barra-lateral {
+  color: #000000;
+  font-size: 25px;
+}
+
+/* cuando está en modo oscuro */
+body.dark-mode .icon-barra-lateral {
+  color: #ffffff;
+}
+
+/* CAMBIO DE TEMA------------------------------------------ */
+
+/* Tema claro */
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Tema oscuro */
+body.dark-mode {
+  background-color: #181b34;
+  color: #ffffff;
+}
+
+
+/* Toggle */
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.4s;
+}
+
+.toggle .circle {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.4s, background 0.4s;
+}
+
+body.dark-mode .toggle {
+  background: #555;
+}
+
+body.dark-mode .toggle .circle {
+  transform: translateX(30px);
+  background: #facc15;
+}
+
+
+/* BARRA LATERAL TABLEROS---------------------- */
+i.bi.bi-table {
+    font-size: 25px;
+}
+
+body.dark-mode .panel-lateral-tableros{
+  background-color: #30324e;
+  color: #fff;
+}
+div#offcanvasWithBothOptions {
+    width: 300px;
+}
+
+.tableros-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+a.load-tablero {
+    color: black;
+    text-decoration: none;
+    font-size: 23px;
+}
+
+body.dark-mode a.load-tablero{
+  color: white;
+}
+
+/* -------------------------------------------------- */

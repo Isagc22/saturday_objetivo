@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usuarios</title>
+  <link rel="shortcut icon" href="/assets/monday_logo_icon.png" type="image/x-icon">
+
+</head>
+
+<body>
+  <!-- Panel lateral reutilizado -->
+  <%- include('../partials/nav.ejs') %>
+
+    <div class="container mt-5">
+      <h2 class="mb-4">Lista de Usuarios</h2>
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Fecha de creación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (usuariosEncontrados.length> 0) { %> <% usuariosEncontrados.forEach(u=> { %>
+              <tr>
+                <td>
+                  <%= u.id %>
+                </td>
+                <td>
+                  <%= u.email %>
+                </td>
+                <td>
+                  <%= u.role %>
+                </td>
+                <td>
+                  <%= u.createdAt ? u.createdAt.toLocaleDateString() : '' %>
+                </td>
+              </tr>
+              <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="4" class="text-center">No hay usuarios registrados</td>
+                  </tr>
+                  <% } %>
+        </tbody>
+      </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Requerimientos</title>
+      <link rel="shortcut icon" href="/assets/monday_logo_icon.png" type="image/x-icon">
+
+   
+  </head>
+  <body>
+    <!-- Incluimos panel lateral -->
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Requerimientos</h2>
+        <button id="openModal" class="btn btn-success">
+          <i class="bi bi-plus-circle"></i> Registrar tarea
+        </button>
+      </div>
+
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Responsable</th>
+            <th>Tipología</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Creado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (requerimientos.length > 0) { %> <% requerimientos.forEach(r =>
+          { %>
+          <tr>
+            <td><%= r.id %></td>
+            <td><%= r.name %></td>
+            <td><%= r.description %></td>
+            <td><%= r.status %></td>
+            <td><%= r.responsible || "-" %></td>
+            <td><%= r.typology || "-" %></td>
+            <td>
+              <%= r.start_date ? r.start_date.toLocaleDateString() : "-" %>
+            </td>
+            <td><%= r.end_date ? r.end_date.toLocaleDateString() : "-" %></td>
+            <td>
+              <%= r.created_at ? r.created_at.toLocaleDateString() : "-" %>
+            </td>
+          </tr>
+          <% }) %> <% } else { %>
+          <tr>
+            <td colspan="9" class="text-center">
+              No hay requerimientos registrados
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Modal -->
+    <%- include('../partials/modalRegistroRequerimiento.ejs') %>
+
+   
+  </body>
+</html>

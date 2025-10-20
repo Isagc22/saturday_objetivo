@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- PANEL LATERAL -->
+  <div class="offcanvas offcanvas-start panel-lateral-tableros" data-bs-scroll="true" tabindex="-1"
+    id="offcanvasWithBothOptions">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Tableros operación Banco</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="tableros-link">
+        <i class="bi bi-table"></i>
+        <a href="/tableroT1" class="load-tablero" data-url="/tableroT1">Tablero T1</a>
+      </div>
+      <div class="tableros-link">
+        <i class="bi bi-table"></i>
+        <a href="/tableroT2" class="load-tablero" data-url="/tableroT2">Tablero T2</a>
+      </div>
+      <!-- Enlaces solo para admin -->
+      <div class="tableros-link" id="usuariosLink" style="display: none">
+        <i class="bi bi-people"></i>
+        <a href="/usuarios" class="load-tablero" data-url="/usuarios">Usuarios</a>
+      </div>
+      <div class="tableros-link" id="requerimientosLink" style="display: none">
+        <i class="bi bi-clipboard-check"></i>
+        <a href="/requerimientos" class="load-tablero" data-url="/requerimientos">Requerimientos</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

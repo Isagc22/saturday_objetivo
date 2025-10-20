@@ -1,0 +1,414 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ----------------------------- */
+/* TITULOS TABLERO POR MODO */
+
+.titulo-tablero-operacion{
+   padding: 20px 40px;
+}
+body.light-mode .titulo-tablero-operacion {
+  color: #323338;
+}
+
+body.dark-mode .titulo-tablero-operacion {
+  color: #d5d8df;
+      padding: 20px 40px;
+}
+
+/* ----------------------------- */
+/* CONTENEDORES TABLAS */
+
+/* NUEVO: Contenedor de sección para el margen horizontal */
+.section-tablero-t1 {
+  padding: 0 40px; /* Aquí controlamos el margen general izquierdo/derecho */
+}
+
+/* MODIFICADO: Ahora con border-radius */
+.container-table-uno {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: visible; 
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  width: min-content;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- SCROLLBAR FLOTANTE SIEMPRE VISIBLE --- */
+/* -------------------------------------------------------------------------- */
+
+.scrollbar-floating {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #c4c4c4;
+  z-index: 2000;
+  padding: 4px 0;
+}
+
+.scrollbar-floating .table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: thin; 
+}
+
+.scrollbar-floating .table-scroll-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.scrollbar-floating .table-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 4px;
+}
+.scrollbar-floating .table-scroll-wrapper::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 6px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- SOLUCIÓN TABLA STICKY Y SCROLL HORIZONTAL --- */
+/* -------------------------------------------------------------------------- */
+
+/* 2. Estilo de la tabla dentro del scroll */
+.table-compromiso-t1 {
+  min-width: 900px; 
+  width: 100%; 
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed; 
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.table-compromiso-t1 th,
+.table-compromiso-t1 td {
+  border: 1px solid #c4c4c4; 
+  padding: 10px;
+  text-align: left;
+  width: 200px;
+}
+
+/* 3. Columna Sticky */
+.sticky-col-1 {
+  position: sticky;
+  left: 0;
+  z-index: 10; 
+}
+
+/* 4. Colores para la columna Sticky (MODO CLARO) */
+body.light-mode .sticky-col-1 {
+  background-color: #ffffff;
+}
+body.light-mode .table-compromiso-t1 thead .sticky-col-1 {
+  background-color: #ffffff;
+}
+
+/* 5. Colores para la columna Sticky (MODO OSCURO) */
+body.dark-mode .sticky-col-1 {
+  background-color: #30324e;
+}
+body.dark-mode .table-compromiso-t1 thead .sticky-col-1 {
+  background-color: #30324e;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- CONTINUACIÓN CSS ORIGINAL --- */
+/* -------------------------------------------------------------------------- */
+
+/* MODO OSCURO */
+body.dark-mode table.table-compromiso-t1 thead {
+  background-color: #30324e;
+}
+
+body.dark-mode table.table-compromiso-t1 tbody tr {
+  background-color: #30324e;
+}
+
+/* Hover filas en modo oscuro */
+body.dark-mode .table-compromiso-t1 tbody tr:hover {
+  background-color: #2f3147; 
+  box-shadow: 0 4px 6px -2px rgba(108, 111, 141, 0.7); 
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* ----------------------------- */
+/* MODO CLARO */
+body.light-mode table.table-compromiso-t1 thead {
+  background-color: #ffffff;
+}
+
+body.light-mode table.table-compromiso-t1 tbody tr {
+  background-color: #ffffff;
+}
+
+/* Hover filas en modo claro */
+body.light-mode .table-compromiso-t1 tbody tr:hover {
+  background-color: #f5f6fa;
+  box-shadow: 0 4px 6px -2px rgba(180, 180, 180, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* ----------------------------- */
+/* TITULOS SECCIONES */
+.titulo-tabla {
+  font-size: 24px;
+  letter-spacing: -0.1px;
+  font-weight: 800;
+}
+
+.titulo-tabla.compromiso {
+  color: rgb(3, 127, 76);
+}
+
+.titulo-tabla.implementacion {
+  color: rgb(102, 204, 255);
+}
+
+.titulo-tabla.qa-revision {
+  color: rgb(120, 75, 209);
+}
+
+/* ----------------------------- */
+/* EFECTOS DE MOVIMIENTO */
+.fade-out {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeInMove 0.6s forwards ease;
+}
+
+@keyframes fadeInMove {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------------- */
+/* DROPDOWN ESTADOS */
+.estado-dropdown {
+     justify-content: center;
+    display: flex;
+    font-size: 14px;
+}
+
+.estado-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.estado-menu {
+  display: none;
+  position: absolute;
+  background: #2f3147;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 4px;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.estado-opcion {
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+}
+
+.estado-opcion:hover {
+  opacity: 0.8;
+}
+
+/* Colores personalizados */
+.estado-compromiso { background: #359970; }
+.estado-implementacion { background: #85d6ff; }
+.estado-qa-revision { background: #339ecd; }
+
+/* ----------------------------- */
+/* DROPDOWN RESPONSABLE */
+.responsable-dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  left: 37px;
+}
+
+/* Avatar circular */
+.responsable-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.avatar-color-0 { background: #ff6b6b; }
+.avatar-color-1 { background: #4dabf7; }
+.avatar-color-2 { background: #51cf66; }
+.avatar-color-3 { background: #f59f00; }
+.avatar-color-4 { background: #845ef7; }
+.avatar-color-5 { background: #20c997; }
+.avatar-color-6 { background: #e64980; }
+.avatar-color-7 { background: #adb5bd; }
+
+.responsable-avatar.empty {
+  background: #ccc;
+  color: #444;
+}
+
+.responsable-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+body.dark-mode .responsable-menu {
+  background: #2f3147;
+  color: #fff;
+}
+
+.responsable-opcion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.responsable-opcion:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+body.dark-mode .responsable-opcion:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+/* asegurarse de que la celda truncada tenga cursor */
+.td-limitado {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  position: relative;
+}
+
+#searchResults li { cursor: pointer; }
+.table-highlight { background-color: #fff3cd !important; transition: background-color .4s; }
+
+/* =========================== */
+
+.table-compromiso-t1 th.sticky-col-1,
+.table-compromiso-t1 td.sticky-col-1 {
+  position: sticky;
+  left: 0;
+  background-clip: padding-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-right: 1px solid #c4c4c4;
+}
+
+.table-compromiso-t1 th.sticky-col-1 {
+  z-index: 60;
+  top: 0;
+}
+
+.table-compromiso-t1 td.sticky-col-1 {
+  z-index: 40;
+}
+
+.table-compromiso-t1 th.sticky-col-1,
+.table-compromiso-t1 td.sticky-col-1 {
+  min-width: 160px;
+  max-width: 220px;
+  padding-left: 12px;
+}
+.scrollbar-global {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 16px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  z-index: 9999;
+}
+
+.scrollbar-inner {
+  height: 1px;
+}
+
+    /* Un único contenedor scroll horizontal para TODAS las tablas */
+    .global-scroll {
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    /* Aseguramos que las tablas mantengan su ancho mínimo para forzar scroll cuando haga falta */
+    .table-compromiso-t1 {
+      min-width: 900px; /* mantiene tu valor */
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    /* Asegurar sticky de encabezados (si aplica) */
+    .table-compromiso-t1 thead th {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background-clip: padding-box;
+    }
+
+    /* REFORZAR sticky de la primera columna */
+    .table-compromiso-t1 th.sticky-col-1,
+    .table-compromiso-t1 td.sticky-col-1 {
+      position: sticky;
+      left: 0;
+      z-index: 70;
+      background-clip: padding-box;
+    }
+
+  
