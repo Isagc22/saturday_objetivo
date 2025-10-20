@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "dev": "nodemon backend/src/app.js"
-  },
+ "scripts": {
+  "start": "node backend/src/app.js",
+  "dev": "nodemon backend/src/app.js",
+   "migrate": "sequelize db:migrate"
+},
   "keywords": [
     "monday",
     "objetivo",
