@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 
+
+
 dotenv.config();
 
 const sequelize = new Sequelize(
@@ -15,9 +17,14 @@ const sequelize = new Sequelize(
   }
 );
 
+// Verificar conexión
 sequelize.authenticate()
-  .then(() => console.log("Conexión a la base de datos establecida correctamente"))
-  .catch((error) => console.error(" Error de conexión:", error));
+  .then(() => console.log("✅ Conexión a la base de datos establecida correctamente"))
+  .catch((error) => console.error("❌ Error de conexión:", error));
+
+// ⚡ Sincroniza modelos con la base de datos (crea tablas si no existen)
+sequelize.sync({ alter: true })
+  .then(() => console.log("✅ Tablas sincronizadas correctamente"))
+  .catch((error) => console.error("❌ Error al sincronizar tablas:", error));
 
 export default sequelize;
-
