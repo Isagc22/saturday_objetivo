@@ -9,10 +9,15 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
+    port: process.env.DB_PORT,
     dialect: "mysql",
-    logging: false, 
+    logging: false
   }
 );
 
+sequelize.authenticate()
+  .then(() => console.log("Conexión a la base de datos establecida correctamente"))
+  .catch((error) => console.error(" Error de conexión:", error));
+
 export default sequelize;
+
